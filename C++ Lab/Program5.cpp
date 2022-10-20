@@ -1,80 +1,71 @@
+/*  Write a C++ program using Multipath Inheritance.*/
 #include <iostream>
 using namespace std;
 
-class Employee
+class Student
 {
+protected:
     char name[20];
+    char branch[20];
+    int roll;
 
 public:
-    void readName()
+    void get()
     {
-        cout << "Enter name : ";
-        cin.getline(name, 20);
-    }
-    void showName()
-    {
-        cout << name;
+        cout << "Enter name, branch, and roll : " << endl;
+        cin >> name >> branch >> roll;
     }
 };
-class Work : virtual public Employee
+class Internal : public virtual Student
 {
-    float expYear;
+protected:
+    float imark;
 
 public:
-    void readExp()
+    void get()
     {
-        cout << "Enter experience in years : ";
-        cin >> expYear;
-    }
-    void showExp()
-    {
-        cout << "Experience = " << expYear << "years" << endl;
+        cout << "Enter internal mark : " << endl;
+        cin >> imark;
     }
 };
-class Account : virtual public Employee
+class External : public virtual Student
 {
-    float salary;
+protected:
+    float emark;
 
 public:
-    void readSal()
+    void get()
     {
-        cout << "Enter salary : ";
-        cin >> salary;
-    }
-    void showSal()
-    {
-        cout << "Salary = " << salary << endl;
+        cout << "Enter external mark : " << endl;
+        cin >> emark;
     }
 };
-class Person : public Work, public Account
+class Result : public Internal, External
 {
-    char gender[10];
+    int total;
 
 public:
-    void readGen()
+    void get()
     {
-        cout << "Enter gender : ";
-        cin.getline(gender, 10);
+        Student::
+            get();
+        Internal::
+            get();
+        External::
+            get();
     }
-    void showGen()
+    void display()
     {
-        cout << "Gender = " << gender << endl;
+        total = imark + emark;
+        cout << "Name : " << name << endl;
+        cout << "Branch : " << branch << endl;
+        cout << "Total Marks : " << total << endl;
     }
 };
 int main()
 {
-    Person p;
-    p.readName();
-    p.readExp();
-    p.readSal();
-    p.readGen();
-    // p.Person::showName();
-    // p.Person::showExp();
-    // p.Person::showSal();
-    p.showName();
-    p.showExp();
-    p.showSal();
-    p.showGen();
-
+    Result obj;
+    obj.get();
+    obj.display();
     return 0;
 }

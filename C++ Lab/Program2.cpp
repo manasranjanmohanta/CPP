@@ -1,48 +1,96 @@
-// Write a C++ program to add and subtract two numbers.
+// Write a C++ program to add and subtract two times
 
 #include <iostream>
 using namespace std;
 
-class Numbers
+class Time
 {
-    float num1, num2;
+private:
+    int hh, mm, ss;
 
 public:
-    void assign(int, int);
-    float add();
-    float sub();
+    void read();
+    void print();
+    Time add(Time B);
+    Time sub(Time B);
 };
-void Numbers ::assign(int n1, int n2)
+
+void Time ::read()
 {
-    num1 = n1;
-    num2 = n2;
+    cout << "Enter hour, minute, and seconds : " << endl;
+    cin >> hh >> mm >> ss;
 }
-float Numbers ::add()
+
+void Time ::print()
 {
-    float sum = num1 + num2;
-    return sum;
+    cout << "hh: mm: ss" << endl;
+    cout << hh << ":" << mm << ":" << ss << endl;
 }
-float Numbers ::sub()
+
+Time Time ::add(Time B)
 {
-    float sub = num1 - num2;
-    return sub;
+    Time temp;
+    temp.ss = ss + B.ss;
+    temp.mm = mm + B.mm + (temp.ss / 60);
+    temp.hh = hh + B.hh + (temp.mm / 60);
+    temp.ss = temp.ss % 60;
+    temp.mm = temp.mm % 60;
+    return temp;
 }
+
+Time Time ::sub(Time B)
+{
+    Time temp;
+
+    if (ss < B.ss)
+    {
+        --mm;
+        ss = ss + 60;
+        temp.ss = ss - B.ss;
+    }
+    else
+    {
+        temp.ss = ss - B.ss;
+    }
+
+    if (mm < B.mm)
+    {
+        --hh;
+        mm = mm + 60;
+        temp.mm = mm - B.mm;
+    }
+    else
+    {
+        temp.mm = mm - B.mm;
+    }
+
+    temp.hh = hh - B.hh;
+
+    return temp;
+}
+
 int main()
 {
-    Numbers N;
+    Time A, B, C, D;
 
-    float n1, n2, sum, sub;
-    cout << "Enter first number : ";
-    cin >> n1;
-    cout << "Enter second number : ";
-    cin >> n2;
+    cout << "Read first time : " << endl;
+    A.read();
 
-    N.assign(n1, n2);
-    sum = N.add();
-    sub = N.sub();
+    cout << "Read second time : " << endl;
+    B.read();
 
-    cout << "Addition of two numbers is : " << sum << endl;
-    cout << "Subtraction of two numbers is : " << sub << endl;
+    cout << "First Time : " << endl;
+    A.print();
+    cout << "Second Time : " << endl;
+    B.print();
+
+    C = A.add(B);
+    D = A.sub(B);
+
+    cout << "Addition of Two time : " << endl;
+    C.print();
+    cout << "Subtraction of two time : " << endl;
+    D.print();
 
     return 0;
 }

@@ -1,15 +1,16 @@
-// Write a C++ program to read student name, roll number, and marks in 6 subjects. Then 
-// display the output in the given format:
-// Name = 
-// Roll =
-// Subject-1 =
-// Subject-2 =
-// Subject-3 =
-// Subject-4 =
-// Subject-5 =
-// Subject-6 =
-// Total Mark =
-// Average Mark =
+/* Write a C++ program to read student name, roll number, and marks in 6 subjects. Then 
+display the output in the given format:
+Name = 
+Roll =
+Subject-1 =
+Subject-2 =
+Subject-3 =
+Subject-4 =
+Subject-5 =
+Subject-6 =
+Total Mark =
+Average Mark = */
+
 #include <iostream>
 using namespace std;
 
